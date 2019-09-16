@@ -5,10 +5,15 @@ module.exports = {
   find,
   findBy,
   findById,
+  findUsernames
 };
 
 function find() {
   return db('users').select('id', 'username', 'password');
+}
+
+function findUsernames() {
+  return db('users').select('username');
 }
 
 function findBy(filter) {

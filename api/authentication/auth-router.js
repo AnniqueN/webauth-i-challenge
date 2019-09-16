@@ -15,6 +15,16 @@ authRouter.get('/users', middleware.validateCred, (req, res) => {
     })
 })
 
+authRouter.get('/usernames', (req, res) => {
+    AuthModel.findUsernames()
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(error => {
+        res.status(500).json({message: "error getting users"})
+    })
+})
+
 authRouter.post('/register', middleware.validateUnique, (req, res) => {
     let {username, password} = req.body;
     const hash = bcrypt.hashSync(password, 8);
@@ -28,7 +38,7 @@ authRouter.post('/register', middleware.validateUnique, (req, res) => {
 })
 
 authRouter.post('/login', middleware.validateCred, (req, res) => {
-    res.status(200).json({message:`Welcome ${req.headers.username}!`})
+    res.status(200).json({token:`esfeyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NUIhkufemQifQ`})
 })
 
 module.exports = authRouter;

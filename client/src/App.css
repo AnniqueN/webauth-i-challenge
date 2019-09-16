@@ -1,0 +1,19 @@
+.app {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .login {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .joinForm {
+    padding-top: 20px;
+    text-align: center;
+  }
+  
+  .joinBtn {
+    color: red;
+  }
