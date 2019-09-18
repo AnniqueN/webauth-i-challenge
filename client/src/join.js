@@ -1,41 +1,37 @@
 import React, { useState } from "react";
-import axios from 'axios';
-import { Input, Button } from 'semantic-ui-react'
+import axios from "axios";
+import { Input, Button } from "semantic-ui-react";
 
-
-const JoinForm = (props) => {
-//   console.log('props in login', props)
+const JoinForm = props => {
+  //   console.log('props in login', props)
   const [credentials, setCredentials] = useState({
-      username: "",
-      password: ""
-  })
+    username: "",
+    password: ""
+  });
 
-
-  const handleChange = (e) => {
+  const handleChange = e => {
     e.preventDefault();
     setCredentials({
-        ...credentials,
-        [e.target.name]: e.target.value
-    })
-  }
-  const register = (e) => {
+      ...credentials,
+      [e.target.name]: e.target.value
+    });
+  };
+  const register = e => {
     e.preventDefault();
     const body = {
-        "username": credentials.username,
-        "password": credentials.password
-    }
+      username: credentials.username,
+      password: credentials.password
+    };
     // console.log('make axios call with these credentials', credentials)
-    axios.post('http://localhost:5001/api/register', credentials)
-    .then(response => {
-        console.log(response)
-        //response.data.token is the token
-        // console.log('response', response);
-        // localStorage.setItem('token', response.data.token)
-        props.history.push('/userlist')
+    axios
+      .post("http://localhost:5001/api/register", credentials)
+      .then(response => {
+        console.log(response);
 
-    })
-    .catch(error => console.log('Error:', error.response.data.error))
-  }
+        props.history.push("/");
+      })
+      .catch(error => console.log("Error:", error.response.data.error));
+  };
 
   return (
     <form onSubmit={register} className="joinForm">
@@ -54,7 +50,10 @@ const JoinForm = (props) => {
         placeholder="password"
         onChange={handleChange}
       />
-      <br/><Button circular color="green">Join</Button>
+      <br />
+      <Button circular color="green">
+        Join
+      </Button>
     </form>
   );
 };
